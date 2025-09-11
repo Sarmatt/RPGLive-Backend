@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const sendBugReportEmail = require('./services/mailer');
+const path = require('path');
 
 const Stripe = require('stripe');
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -8,7 +9,9 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
+
+// ВАЖЛИВО: тепер правильно підключаємо public/
+app.use(express.static(path.join(__dirname, 'public')));
 
 const cors = require('cors');
 
@@ -19,7 +22,6 @@ app.use(cors({
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type']
 }));
-
 
 app.get('/', (req, res) => {
   res.send(`
@@ -36,7 +38,6 @@ app.get('/', (req, res) => {
     </html>
   `);
 });
-
 
 app.post('/bug-report', async (req, res) => {
   const { title, description } = req.body;
@@ -80,7 +81,6 @@ app.post('/create-checkout-session', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on ${BASE_URL}`));

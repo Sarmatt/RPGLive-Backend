@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Stripe Test Payment</title>
+</head>
+<body>
+  <h1>Тестова оплата Stripe</h1>
+  <p>Тисни кнопку і плати тестовою карткою (4242 4242 4242 4242)</p>
+  <button id="pay">Оплатити $5</button>
+
+  <script>
+    document.getElementById("pay").addEventListener("click", async () => {
+      try {
+        const res = await fetch("/create-checkout-session", { method: "POST" });
+        const data = await res.json();
+
+        console.log("Stripe response:", data); // дивись у консоль браузера
+
+        if (data.url) {
+          window.location.href = data.url; // редірект на Stripe
+        } else {
+          alert("Помилка: Stripe не повернув URL");
+        }
+      } catch (err) {
+        console.error("Fetch error:", err);
+        alert("Не вдалося створити сесію оплати");
+      }
+    });
+  </script>
+</body>
+</html>

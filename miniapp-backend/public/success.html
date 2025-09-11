@@ -1,12 +1,48 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Оплата успішна ✅</title>
+  <title>Payment Successful ✅</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background: linear-gradient(135deg, #4caf50, #2e7d32);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      backdrop-filter: blur(6px);
+      animation: fadeIn 0.8s ease;
+      max-width: 520px;
+    }
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+    }
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
-  <h1>Дякуємо за оплату! 🎉</h1>
-  <p>Транзакція пройшла успішно. Тепер можна йти купувати собі каву ☕ замість дебагу.</p>
-  <a href="/">⬅️ Повернутися на головну</a>
+  <div class="card">
+    <h1>✅ Payment Successful</h1>
+    <p>Thank you, gamer, for your purchase! 🎉</p>
+    <p>You can now return to <strong>RPG Live</strong> and fully grow your character ⚔️🛡️</p>
+  </div>
 </body>
-</html> 
+</html>
